@@ -1,7 +1,79 @@
 .hotel-view {
-    background-color: $color-white;
+  background-color: $color-white;
 
-    height: 80rem; // test, remove
+  height: 80rem; // test, remove
 
-    flex: 1;
+  flex: 1;
+}
+
+.gallery {
+  display: flex;
+
+  &__photo {
+    width: 100%;
+    display: block;
+  }
+}
+
+.overview {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $color-grey-light-2;
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.5rem 3rem;
+  }
+
+  &__stars {
+    margin-right: auto; // element occupies the space that it needs, rest is filled with margin
+    display: flex; // remove space under star icons svgs
+  }
+
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: $color-primary;
+  }
+
+  &__location {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+  &__icon-location {
+    margin-right: 0.5rem;
+  }
+
+  &__rating {
+      background-color: $color-primary;
+      color: $color-white;
+      margin-left: 3rem;
+      padding: 0 2.25rem;
+      align-self: stretch;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+
+  }
+
+  &__rating-average {
+      font-size: 2.25rem;
+      font-weight: 300;
+      margin-bottom: -3px;
+  }
+
+  &__rating-count {
+      font-size: .8rem;
+      text-transform: uppercase;
+ 
+
+  }
 }
