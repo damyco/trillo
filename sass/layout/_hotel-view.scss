@@ -1,10 +1,10 @@
 .hotel-view {
   background-color: $color-white;
-
-  height: 80rem; // test, remove
-
   flex: 1;
 }
+
+//////////////////////////////////////
+/// HOTEL OVERVIEW
 
 .gallery {
   display: flex;
@@ -18,7 +18,13 @@
 .overview {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid $color-grey-light-2;
+  @include borderBottomSmall;
+  @media only screen and (max-width: $bp-ultra-small) {
+    justify-content: space-around;
+  }
+  @media only screen and (max-width: $bp-nano-small) {
+    flex-direction: column;
+  }
 
   &__heading {
     font-size: 2.25rem;
@@ -26,54 +32,148 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
+
+    @media only screen and (max-width: $bp-ultra-small) {
+      font-size: 1.5rem;
+      font-weight: 400;
+      padding: 1.25rem;
+    }
+    @media only screen and (max-width: $bp-nano-small) {
+      padding: 0.75rem;
+    }
   }
 
   &__stars {
     margin-right: auto; // element occupies the space that it needs, rest is filled with margin
     display: flex; // remove space under star icons svgs
+    @media only screen and (max-width: $bp-ultra-small) {
+      margin: 0;
+    }
+    @media only screen and (max-width: $bp-nano-small) {
+      margin-top: 1rem;
+      order: -1;
+    }
   }
 
   &__icon-star,
   &__icon-location {
     width: 1.75rem;
     height: 1.75rem;
-    fill: $color-primary;
+    fill: $color-primary-dark;
   }
 
   &__location {
     font-size: 1.2rem;
     display: flex;
     align-items: center;
+    @media only screen and (max-width: $bp-nano-small) {
+      margin-bottom: 1.5rem;
+    }
   }
   &__icon-location {
     margin-right: 0.5rem;
+    @media only screen and (max-width: $bp-nano-small) {
+      margin: 0;
+    }
   }
 
   &__rating {
-      background-color: $color-primary;
-      color: $color-white;
-      margin-left: 3rem;
-      padding: 0 2.25rem;
-      align-self: stretch;
+    background-color: $color-primary-dark;
+    color: $color-white;
+    margin-left: 3rem;
+    padding: 0 2.25rem;
+    align-self: stretch;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @media only screen and (max-width: $bp-ultra-small) {
+      padding: 0.5rem;
+      margin: 0;
+    }
   }
 
   &__rating-average {
-      font-size: 2.25rem;
-      font-weight: 300;
-      margin-bottom: -3px;
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin-bottom: -3px;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
-      font-size: .8rem;
-      text-transform: uppercase;
- 
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}
 
+//////////////////////////////////////
+/// CONTENT CONTAINERS
+
+.detail {
+  font-size: 1.4rem;
+  display: flex;
+  padding: 4.5rem;
+  background-color: $color-grey-light-1;
+  @include borderBottomSmall;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+  }
+  @media only screen and (max-width: $bp-ultra-small) {
+    padding: 1.5rem;
+  }
+  @media only screen and (max-width: $bp-nano-small) {
+    padding: 0;
+  }
+}
+
+.description {
+  background-color: $color-white;
+  @include boxShadowSubtle;
+  padding: 3rem;
+  flex: 0 0 60%; // set to 60% width of container
+  margin-right: 4.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-right: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    margin-right: 0;
+    margin-bottom: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-ultra-small) {
+    margin-bottom: 1.5rem;
+  }
+
+  @media only screen and (max-width: $bp-nano-small) {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.user-reviews {
+  flex: 1; // occupy the rest of the available space
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media only screen and (max-width: $bp-nano-small) {
+    margin-bottom: 1rem;
   }
 }

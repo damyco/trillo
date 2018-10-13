@@ -1,10 +1,17 @@
 .header {
     height: 7rem;
     background-color: $color-white;
-    border-bottom: 1px solid $color-grey-light-2;
+    @include borderBottomSmall;
     font-size: 1.4rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (max-width: $bp-smallest) {
+        flex-wrap: wrap;
+        align-content: space-evenly;
+        height: 11rem;
+      }
+
 }

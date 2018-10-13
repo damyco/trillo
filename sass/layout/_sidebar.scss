@@ -1,79 +1,123 @@
 .sidebar {
-    background-color: $color-grey-dark-1;
+  background-color: $color-grey-dark-1;
 
-    flex: 0 0 18%;    // flex-grow, flex-shrink, flex-basis
+  flex: 0 0 18%; // flex-grow, flex-shrink, flex-basis
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-
 .side-nav {
-    font-size: 1.4rem;
-    list-style: none;
-    margin-top: 3.5rem;
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
 
-    &__item {
-        position: relative;
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
 
-        &:not(:last-child) {
-            margin-bottom: .5rem;
-        }
+  &__item {
+    position: relative;
 
-  
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin: 0;
+      }
     }
 
-    &__item::before{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 3px;
-        background-color: $color-primary;
-        transform: scaleY(0);
-        transition: transform .2s, 
-                    width .4s cubic-bezier(1,0,0,1) .2s,
-                    background-color .15s;
-        
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
-    &__item:hover::before,
-    &__item--active::before {
-        transform: scaleY(1);
-        width: 100%;
+  }
+
+  &__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: $color-primary;
+    transform: scaleY(0);
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+      background-color 0.15s;
+  }
+  &__item:hover::before,
+  &__item--active::before {
+    transform: scaleY(1);
+    width: 100%;
+  }
+
+  &__item:active::before {
+    background-color: $color-primary-light;
+  }
+
+  &__link:link,
+  &__link:visited {
+    color: $color-grey-light-1;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    padding: 1.5rem 3rem;
+
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    align-items: center; //center icons with links
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
     }
 
-    &__item:active::before {
-        background-color: $color-primary-light;
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.25rem 0.5rem;
     }
 
-    &__link:link,
-    &__link:visited {
-        color: $color-grey-light-1;
-        text-decoration: none;
-        text-transform: uppercase;
-        display: block;
-        padding: 1.5rem 3rem;
-
-        position: relative;
-        z-index: 10;
-        display: flex; 
-        align-items: center; //center icons with links
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 1.75rem;
     }
+    
+  }
 
-    &__icon {
-        width: 1.75rem;
-        height: 1.75rem;
-        margin-right: 2rem;
-        fill: currentColor; // currentColor = color of the parent element, also takes color from :hover state 
+  &__link span {
+    @media only screen and (max-width: $bp-smallest) {
+      display: none;
     }
+  }
 
+  &__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor; // currentColor = color of the parent element, also takes color from :hover state
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+      margin-bottom: 0;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
 }
 
 .legal {
-    font-size: 1.2rem;
-    color: $color-grey-light-4;
-    text-align: center;
-    padding: 2.5rem;
+  font-size: 1.2rem;
+  color: $color-grey-light-4;
+  text-align: center;
+  padding: 2.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }

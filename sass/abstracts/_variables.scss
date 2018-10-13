@@ -16,3 +16,12 @@ $color-grey-dark-3: #999;
 $color-white: #fff;
 $color-black: #000;
 
+// breakpoints
+
+$bp-largest: 75em;          // 1200px / 16px = 75em
+$bp-large: 68.75em;         // 1100px 
+$bp-medium: 56.25em;        // 900px 
+$bp-small: 42.5em;          // 680px 
+$bp-smallest: 31.25em;       // 500px 
+$bp-ultra-small: 28.75em;    // 460px
+$bp-nano-small: 23.25em;           // 372px               
