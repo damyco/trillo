@@ -21,6 +21,8 @@
   align-items: center;
   justify-content: center;
 
+  position: relative;
+
   @media only screen and (max-width: $bp-smallest) {
     order: 1;
     flex: 0 0 100%;
@@ -45,6 +47,10 @@
       background-color: $color-grey-light-3;
       padding: 0.9rem 2rem;
       border: 1px solid rgba($color-primary, 0.1);
+      & ~ .suggestions {
+        visibility: visible;
+        opacity: 1;
+      }
 
       @media only screen and (max-width: $bp-smallest) {
         padding: 0.7rem 2rem;
@@ -87,6 +93,106 @@
 }
 
 //////////////////////////////////////
+/// SEARCHBOX SUGGESTIONS
+
+.suggestions {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99;
+  top: 100%;
+  right: 0;
+  width: 47rem;
+
+  font-size: 1rem;
+  background-color: $color-white;
+  @include boxShadowHover;
+  transition: all 0.2s 0.1s;
+
+  @media only screen and (max-width: $bp-medium) {
+    right: -2.5rem;
+  }
+  @media only screen and (max-width: $bp-small) {
+    right: -13rem;
+  }
+  @media only screen and (max-width: $bp-smallest) {
+    right: 6rem;
+  }
+  @media only screen and (max-width: $bp-ultra-small) {
+    right: 0;
+  }
+  @media only screen and (max-width: $bp-nano-small) {
+    width: 40rem;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-grey-light-1;
+    }
+    &:not(:last-child) {
+      @include borderBottomSmall;
+    }
+  }
+  &__item-box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    justify-content: space-evenly;
+  }
+
+  &__photo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+  }
+
+  &__name {
+    font-size: 1rem;
+  }
+
+  &__location {
+    font-size: 0.8rem;
+  }
+
+  &__stars {
+    display: flex; // remove space under star icons svgs
+    margin-left: -1px;
+    margin-top: 2px;
+  }
+
+  &__icon-star {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: $color-primary-dark;
+  }
+
+  &__rating {
+    background-color: $color-primary-dark;
+    color: $color-white;
+    font-size: 1.4rem;
+    font-weight: 300;
+    padding: 1rem 1.5rem;
+    align-self: stretch;
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+//////////////////////////////////////
 /// USER NAV
 
 .user-nav {
@@ -94,6 +200,8 @@
 
   display: flex;
   align-items: center;
+
+  position: relative;
 
   & > * {
     //user-nav select all DIRECT children (icon__box icon__box __user)
@@ -103,7 +211,7 @@
 
     display: flex;
     align-items: center;
-    transition: all 0.2;
+    transition: all 0.2s;
     @media only screen and (max-width: $bp-smallest) {
       height: 160%;
     }
@@ -117,11 +225,21 @@
     position: relative;
     -webkit-transition: all 0.3s;
 
-    &:hover > :last-child {
+    &:hover > :nth-child(2) {
       background-color: $color-primary-dark-hover;
 
       animation: zoomInAndOut 0.3s ease-in-out;
     }
+  }
+
+  &__message-icon:hover .chat {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__settings:hover .settings {
+    visibility: visible;
+    opacity: 1;
   }
 
   &__icon {
@@ -152,14 +270,151 @@
     border-radius: 50%;
     margin-right: 1.25rem;
     @media only screen and (max-width: $bp-ultra-small) {
-      margin: 0;
       height: 4rem;
     }
   }
-  &__user-name {
-    @media only screen and (max-width: $bp-ultra-small) {
-      display: none;
+}
+
+//////////////////////////////////////
+/// SETTINGS FROM USER NAV
+
+.settings {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99;
+  top: 100%;
+  right: 0;
+  width: 17rem;
+
+  font-size: 1rem;
+  background-color: $color-white;
+  @include boxShadowHover;
+  transition: all 0.2s 0.1s;
+
+  @media only screen and (max-width: $bp-smallest) {
+    top: 132%;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+
+    padding: 1.2rem 1.5rem;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $color-grey-light-1;
     }
+    &:not(:last-child) {
+      @include borderBottomSmall;
+    }
+  }
+
+  &__link:link,
+  &__link:visited {
+    flex: 0 0 80%;
+    color: $color-grey-dark-1;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center; //center icons with links
+    justify-content: flex-start;
+  }
+
+  &__icon {
+    flex: 0 0 20%;
+    height: 1.75rem;
+    width: 1.75rem;
+    margin-right: 1.5rem;
+    fill: $color-primary-dark;
+  }
+}
+
+//////////////////////////////////////
+/// CHAT
+.chat {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99;
+  top: 100%;
+  right: -12.7rem;
+  width: 35rem;
+
+  font-size: 1.2rem;
+  background-color: $color-white;
+  @include boxShadowHover;
+  transition: all 0.2s 0.1s;
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    justify-content: space-between;
+    transition: all 0.2s;
+
+    &:hover .chat__photo {
+      border: 3px solid $color-primary;
+    }
+
+    &:not(:last-child):hover {
+      background-color: $color-grey-light-1;
+    }
+
+    &:not(:last-child) {
+      @include borderBottomSmall;
+    }
+  }
+
+  &__photo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    box-sizing: content-box;
+    border: 3px solid $color-white;
+    transition: border 0.2s;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__info {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.2rem;
+  }
+
+  &__user-name {
+    font-weight: 600;
+  }
+
+  &__timestamp {
+    font-size: 1rem;
+    color: $color-primary-dark;
+    margin-left: auto;
+  }
+
+  &__preview {
+    font-size: 1rem;
+  }
+
+  &__btn {
+    align-self: center;
   }
 }
 
@@ -302,6 +557,7 @@
   padding: 3rem;
   margin-bottom: 3.5rem;
   position: relative;
+  overflow: hidden;
 
   @media only screen and (max-width: $bp-medium) {
     padding: 2rem;
@@ -372,7 +628,7 @@
     font-size: 20rem;
     color: $color-grey-light-2;
     font-family: sans-serif;
-    overflow: hidden;
+
     z-index: 1;
   }
 }
