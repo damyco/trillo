@@ -557,9 +557,33 @@ body {
 .gallery {
   display: flex;
   overflow: hidden; }
+  .gallery__item {
+    position: relative; }
   .gallery__photo {
     width: 100%;
     display: block; }
+    .gallery__photo:hover ~ .gallery__photo-caption {
+      opacity: 1;
+      visibility: visible;
+      right: 0; }
+  .gallery__photo-caption {
+    position: absolute;
+    bottom: 0;
+    right: -20rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    padding: 1rem 3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #faf9f9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    border-left: 0.8rem solid #52499e;
+    transition: all 0.3s ease-out; }
+    @media only screen and (max-width: 28.75em) {
+      .gallery__photo-caption {
+        padding: 0.5rem 1rem; } }
 
 .overview {
   display: flex;
